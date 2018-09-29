@@ -4,7 +4,8 @@ Packages included: `curl`, `wget`
 
 ## Steps
 1. Mount crontab on `/var/spool/cron/crontabs/<user>`
-2. If the crons refer to any scripts, also mount the folder containing those scripts on /cronscripts
+2. If the crons refer to any scripts, mount a folder containing those scripts on `/cronscripts`
+3. Run the container. If no errors are shown, your cron should be ready.
 
 ## Example
 
