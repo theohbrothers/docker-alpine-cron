@@ -7,7 +7,10 @@ Packages included: `curl`, `wget`
 2. If the crons refer to any scripts, also mount the folder containing those scripts on /cronscripts
 
 ## Example
-docker run wonderous/alpine-con -v ./root:/var/spool/cron/crontabs/root -v ./cronscripts/:/cronscripts/ -d
+
+```
+docker run wonderous/alpine-con -d -v /path/to/root:/var/spool/cron/crontabs/root -v /path/to/cronscripts/:/cronscripts/
+```
 
 ## Environment variables
 - CRON_USER. If unset, this will be `root`.
