@@ -1,6 +1,6 @@
 # alpine-cron
 
-Packages included: curl, wget
+Packages included: `curl`, `wget`
 
 ## Steps
 1. Mount crontab on `/var/spool/cron/crontabs/<user>`
@@ -14,3 +14,9 @@ docker run wonderous/alpine-con -v ./root:/var/spool/cron/crontabs/root -v ./cro
 
 ## Notes
 - By default, a `/etc/environment` file is created at the beginning of the entrypoint script, which makes environment variables available to everyone, including crond.
+
+## Tags
+Separate builds are included with certain tools:
+ - `:openssl`
+ - `:mysql-client`:
+ - `:openssl-mysql-client`:
