@@ -33,3 +33,10 @@ Separate builds are included with certain tools:
  - `:openssl`
  - `:mysql-client`:
  - `:openssl-mysql-client`:
+
+## FAQ
+
+#### My cron is not running!
+ - Ensure your mounted crontab's filename matches the $CRON_USER variable.
+ - Ensure your crontab has a newline at the end of the file.
+ - Use `docker logs` to check whether `crond` has spit out any messages about the syntax of your cron
