@@ -7,7 +7,15 @@ env > /etc/environment
 [ -z "$CRON_USER" ] && CRON_USER=root
 echo "$( date )[ENTRYPOINT]: Will use user $CRON_USER for crons."
 
-# Ensure our crontabs dont have write permissions
+# Check if the cron user exists
+if [ ! id test ]; then
+    echo "user exists on the system!"
+else
+    echo "$( date )[ENTRYPOINT]: User '$CRON_USER' specified by \$CRON_USER environment variable does not exist on the system!"
+    exit 1
+fi
+
+# Ensure our crontab doesn't have write permissions
 # NOTE: On alpine, /var/spool/cron/crontabs/ points to /etc/crontabs/
 CRONTAB="/var/spool/cron/crontabs/$CRON_USER"
 echo "$( date )[ENTRYPOINT]: Setting permissions on crontab: $CRONTAB"
