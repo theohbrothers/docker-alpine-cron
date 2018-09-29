@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/sh
 
 # This gives everyone, including crond, access to environment variables you can use in crons, or cron-called s$
 env > /etc/environment
