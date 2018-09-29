@@ -22,7 +22,7 @@ CRONSCRIPTS_DIR=/cronscripts
 echo "$( date )[ENTRYPOINT]: Setting permissions on cron scripts directory: $CRONSCRIPTS_DIR"
 if [ -d "$CRONSCRIPTS_DIR" ]; then
     chown "$CRON_USER:$CRON_USER" "$CRONSCRIPTS_DIR"
-    chmod 750 "$CRONSCRIPTS_DIR"
+    chmod -R 750 "$CRONSCRIPTS_DIR"
 fi
 
 exec "$@"
