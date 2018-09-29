@@ -9,8 +9,6 @@ echo "$( date )[ENTRYPOINT]: Will use user $CRON_USER for crons."
 
 # Check if the cron user exists
 if [ ! id test ]; then
-    echo "user exists on the system!"
-else
     echo "$( date )[ENTRYPOINT]: User '$CRON_USER' specified by \$CRON_USER environment variable does not exist on the system!"
     exit 1
 fi
