@@ -24,6 +24,9 @@ docker run -d \
 
 ## Notes
 - By default, a `/etc/environment` file is created at the beginning of the entrypoint script, which makes environment variables available to everyone, including crond.
+- The crontab at `/var/spool/cron/crontabs/<$CRON_USER>` is set to read-only permissions: `440`
+- The mountpoint /cronscripts/ is recursively set to have executable permissions at entrypoint: `+x`
+
 
 ## Tags
 Separate builds are included with certain tools:
