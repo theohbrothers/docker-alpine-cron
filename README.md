@@ -4,7 +4,7 @@ Packages included: `curl`, `wget`
 
 ## Steps
 1. Mount crontab on `/var/spool/cron/crontabs/<user>`
-2. If the crons refer to any scripts, mount a folder containing those scripts on `/cronscripts`
+2. If the crons refer to any scripts, you may mount a folder containing those scripts on `/cronscripts` or whereever you want
 3. Run the container. If no errors are shown, your cron should be ready.
 
 ## Example
@@ -13,7 +13,7 @@ Packages included: `curl`, `wget`
 docker run -d \
     -v /path/to/root:/var/spool/cron/crontabs/root \
     -v /path/to/cronscripts/:/cronscripts/ \
-    wonderous/alpine-con
+    wonderous/alpine-cron
 ```
 
 ## Environment variables
