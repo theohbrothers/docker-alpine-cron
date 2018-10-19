@@ -1,8 +1,13 @@
-FROM alpine
+FROM alpine:3.8
 
-MAINTAINER The Oh Brothers
+RUN apk update \
+    && apk add --no-cache curl wget
 
-RUN apk add --update curl wget mysql-client && rm -rf /var/cache/apk/*
+
+
+# Cleanup
+RUN rm -rf /usr/src/php \
+    && rm -rf /var/cache/apk/*
 
 # This is the only signal from the docker host that appears to stop crond
 STOPSIGNAL SIGKILL

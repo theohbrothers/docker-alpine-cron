@@ -1,13 +1,14 @@
+@"
 # alpine-cron
 
-Packages included: curl, wget
+Packages included: `curl`, `wget`
 
 | Tags |
-|:-------:| 
-| `:bare` | 
-| `:openssl` | 
-| `:mysqlclient` | 
-| `:mysqlclient-openssl` |
+|:-------:| $( $VARIANTS | % {
+"`n| ``:$( $_['name'] )`` |"
+})
+
+"@ + @'
 
 ## Steps
 1. Mount crontab on `/var/spool/cron/crontabs/<user>`
@@ -42,3 +43,4 @@ docker run -d \
  - Use `docker logs` to check whether `crond` has spit out any messages about the syntax of your cron
 
 })
+'@
