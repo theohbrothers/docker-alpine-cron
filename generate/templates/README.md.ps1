@@ -42,5 +42,4 @@ docker run -d \
  - Ensure your crontab has a newline at the end of the file.
  - Use `docker logs` to check whether `crond` has spit out any messages about the syntax of your cron
 
-})
 '@
