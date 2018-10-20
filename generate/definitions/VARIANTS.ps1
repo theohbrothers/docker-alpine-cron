@@ -2,27 +2,48 @@
 $VARIANTS_VERSION = "1.0.0"
 $VARIANTS = @(
     @{
-        name = 'bare'
-        includeEntrypointScript = $true
+        tag = 'bare'
+        distro = 'alpine'
     }
     @{
-        name = 'openssl'
-        includeEntrypointScript = $true
+        tag = 'openssl'
+        distro = 'alpine'
     }
     @{
-        name = 'mysqlclient'
-        includeEntrypointScript = $true
+        tag = 'mysqlclient'
+        distro = 'alpine'
     }
     @{
-        name = 'mysqlclient-openssl'
-        includeEntrypointScript = $true
+        tag = 'mysqlclient-openssl'
+        distro = 'alpine'
     }
 )
 
-# Intelligently add properties
-$VARIANTS | % {
-    $_['version'] = $VARIANTS_VERSION
-    $_['extensions'] = $_['name'] -split '-' | ? { $_.Trim() }
+# Docker image variants' definitions (shared)
+$VARIANTS_SHARED = @{
+    version = $VARIANTS_VERSION
+    buildContextFiles = @{
+        templates = @{
+            'Dockerfile' = @{
+                common = $false
+                includeHeader = $true
+                includeFooter = $true
+                passes = @(
+                    @{
+                        variables = @{}
+                    }
+                )
+            }
+            'docker-entrypoint.sh' = @{
+                common = $true
+                passes = @(
+                    @{
+                        variables = @{}
+                    }
+                )
+            }
+        }
+    }
 }
 
 # Send definitions down the pipeline

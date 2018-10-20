@@ -14,8 +14,9 @@ build-bare:
     - master
     - api
   variables:
-    VARIANT_NAME: "bare"
-    VARIANT_TAG: "bare-v1.0.0"
+    VARIANT_TAG: "bare"
+    VARIANT_TAG_WITH_VERSION: "bare-v1.0.0"
+    VARIANT_BUILD_DIR: "variants/alpine/bare"
   before_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
 
@@ -29,16 +30,20 @@ build-bare:
     - date '+%Y-%m-%d %H:%M:%S %z'
     - docker build
       -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}"
+      -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG_WITH_VERSION}"
       -t "${CI_REGISTRY_IMAGE}:${VARIANT_TAG}"
-      "./variants/${VARIANT_NAME}"
+      -t "${CI_REGISTRY_IMAGE}:${VARIANT_TAG_WITH_VERSION}"
+      "${VARIANT_BUILD_DIR}"
 
     - date '+%Y-%m-%d %H:%M:%S %z'
 
     # Push to Docker Hub registry. E.g. 'namespace/my-project:tag'
     - docker push "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}"
+    - docker push "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG_WITH_VERSION}"
 
     # Push to GitLab registry. E.g. 'registry.gitlab.com/namespace/my-project:tag
     - docker push "${CI_REGISTRY_IMAGE}:${VARIANT_TAG}"
+    - docker push "${CI_REGISTRY_IMAGE}:${VARIANT_TAG_WITH_VERSION}"
 
   after_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
@@ -55,8 +60,9 @@ build-openssl:
     - master
     - api
   variables:
-    VARIANT_NAME: "openssl"
-    VARIANT_TAG: "openssl-v1.0.0"
+    VARIANT_TAG: "openssl"
+    VARIANT_TAG_WITH_VERSION: "openssl-v1.0.0"
+    VARIANT_BUILD_DIR: "variants/alpine/openssl"
   before_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
 
@@ -70,16 +76,20 @@ build-openssl:
     - date '+%Y-%m-%d %H:%M:%S %z'
     - docker build
       -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}"
+      -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG_WITH_VERSION}"
       -t "${CI_REGISTRY_IMAGE}:${VARIANT_TAG}"
-      "./variants/${VARIANT_NAME}"
+      -t "${CI_REGISTRY_IMAGE}:${VARIANT_TAG_WITH_VERSION}"
+      "${VARIANT_BUILD_DIR}"
 
     - date '+%Y-%m-%d %H:%M:%S %z'
 
     # Push to Docker Hub registry. E.g. 'namespace/my-project:tag'
     - docker push "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}"
+    - docker push "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG_WITH_VERSION}"
 
     # Push to GitLab registry. E.g. 'registry.gitlab.com/namespace/my-project:tag
     - docker push "${CI_REGISTRY_IMAGE}:${VARIANT_TAG}"
+    - docker push "${CI_REGISTRY_IMAGE}:${VARIANT_TAG_WITH_VERSION}"
 
   after_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
@@ -96,8 +106,9 @@ build-mysqlclient:
     - master
     - api
   variables:
-    VARIANT_NAME: "mysqlclient"
-    VARIANT_TAG: "mysqlclient-v1.0.0"
+    VARIANT_TAG: "mysqlclient"
+    VARIANT_TAG_WITH_VERSION: "mysqlclient-v1.0.0"
+    VARIANT_BUILD_DIR: "variants/alpine/mysqlclient"
   before_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
 
@@ -111,16 +122,20 @@ build-mysqlclient:
     - date '+%Y-%m-%d %H:%M:%S %z'
     - docker build
       -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}"
+      -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG_WITH_VERSION}"
       -t "${CI_REGISTRY_IMAGE}:${VARIANT_TAG}"
-      "./variants/${VARIANT_NAME}"
+      -t "${CI_REGISTRY_IMAGE}:${VARIANT_TAG_WITH_VERSION}"
+      "${VARIANT_BUILD_DIR}"
 
     - date '+%Y-%m-%d %H:%M:%S %z'
 
     # Push to Docker Hub registry. E.g. 'namespace/my-project:tag'
     - docker push "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}"
+    - docker push "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG_WITH_VERSION}"
 
     # Push to GitLab registry. E.g. 'registry.gitlab.com/namespace/my-project:tag
     - docker push "${CI_REGISTRY_IMAGE}:${VARIANT_TAG}"
+    - docker push "${CI_REGISTRY_IMAGE}:${VARIANT_TAG_WITH_VERSION}"
 
   after_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
@@ -137,8 +152,9 @@ build-mysqlclient-openssl:
     - master
     - api
   variables:
-    VARIANT_NAME: "mysqlclient-openssl"
-    VARIANT_TAG: "mysqlclient-openssl-v1.0.0"
+    VARIANT_TAG: "mysqlclient-openssl"
+    VARIANT_TAG_WITH_VERSION: "mysqlclient-openssl-v1.0.0"
+    VARIANT_BUILD_DIR: "variants/alpine/mysqlclient-openssl"
   before_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
 
@@ -152,16 +168,20 @@ build-mysqlclient-openssl:
     - date '+%Y-%m-%d %H:%M:%S %z'
     - docker build
       -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}"
+      -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG_WITH_VERSION}"
       -t "${CI_REGISTRY_IMAGE}:${VARIANT_TAG}"
-      "./variants/${VARIANT_NAME}"
+      -t "${CI_REGISTRY_IMAGE}:${VARIANT_TAG_WITH_VERSION}"
+      "${VARIANT_BUILD_DIR}"
 
     - date '+%Y-%m-%d %H:%M:%S %z'
 
     # Push to Docker Hub registry. E.g. 'namespace/my-project:tag'
     - docker push "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}"
+    - docker push "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG_WITH_VERSION}"
 
     # Push to GitLab registry. E.g. 'registry.gitlab.com/namespace/my-project:tag
     - docker push "${CI_REGISTRY_IMAGE}:${VARIANT_TAG}"
+    - docker push "${CI_REGISTRY_IMAGE}:${VARIANT_TAG_WITH_VERSION}"
 
   after_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
