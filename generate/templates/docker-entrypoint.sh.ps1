@@ -1,7 +1,7 @@
 @'
 #!/bin/sh
 
-# This gives everyone, including crond, access to environment variables you can use in crons, or cron-called s$
+# This makes environment variables available to everyone, including crond and its crons
 env > /etc/environment
 
 output() {

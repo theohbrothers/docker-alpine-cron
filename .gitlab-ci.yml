@@ -53,7 +53,7 @@ build-bare:
 
     # Log out of GitLab registry
     - docker logout "${CI_REGISTRY}"
-
+ 
 build-openssl:
   stage: build
   only:
@@ -99,7 +99,7 @@ build-openssl:
 
     # Log out of GitLab registry
     - docker logout "${CI_REGISTRY}"
-
+ 
 build-mysqlclient:
   stage: build
   only:
@@ -145,7 +145,7 @@ build-mysqlclient:
 
     # Log out of GitLab registry
     - docker logout "${CI_REGISTRY}"
-
+ 
 build-mysqlclient-openssl:
   stage: build
   only:
