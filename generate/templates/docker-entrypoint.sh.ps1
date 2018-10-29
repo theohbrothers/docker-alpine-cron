@@ -17,7 +17,8 @@ error() {
 output "Will use user $CRON_USER for crons."
 
 # Check if the cron user exists
-if [ ! id "$CRON_USER" ]; then
+id "$CRON_USER" >/dev/null 2>&1
+if [ ! $? = 0 ]; then
     error "User '$CRON_USER' specified by \$CRON_USER environment variable does not exist on the system!"
     exit 1
 fi
