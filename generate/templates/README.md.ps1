@@ -21,7 +21,7 @@ Packages included: `curl`, `wget`
 docker run -d \
     -v /path/to/root:/var/spool/cron/crontabs/root \
     -v /path/to/cronscripts/:/cronscripts/ \
-    wonderous/alpine-cron
+    leojonathanoh/alpine-cron:bare
 ```
 
 ## Environment variables
