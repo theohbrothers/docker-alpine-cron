@@ -24,9 +24,9 @@ stages:
   script:
   - date '+%Y-%m-%d %H:%M:%S %z'
 
-  - if [ -z "$VARIANT_TAG" ] && echo "VARIANT_TAG is empty" && exit 1
-  - if [ -z "$VARIANT_TAG_WITH_VERSION" ] && echo "VARIANT_TAG_WITH_VERSION is empty" && exit 1
-  - if [ -z "$VARIANT_BUILD_DIR" ] && echo "VARIANT_BUILD_DIR is empty" && exit 1
+  - if [ -z "$VARIANT_TAG" ]; then echo "VARIANT_TAG is empty" && exit 1; fi
+  - if [ -z "$VARIANT_TAG_WITH_VERSION" ]; then echo "VARIANT_TAG_WITH_VERSION is empty" && exit 1; fi
+  - if [ -z "$VARIANT_BUILD_DIR" ]; then echo "VARIANT_BUILD_DIR is empty" && exit 1; fi
 
   - docker build
     -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}"
