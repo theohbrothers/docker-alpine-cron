@@ -11,8 +11,16 @@ stages:
 .build_template: &build_definition
   stage: build
   only:
-    - master
-    - api
+    refs:
+      - branches
+      - /^v(?:\d+\.)+\d+$/
+    variables:
+      - $VARIANT_TAG
+      - $VARIANT_TAG_WITH_VERSION
+      - $VARIANT_BUILD_DIR
+  except:
+      refs:
+        - master
   before_script:
   - date '+%Y-%m-%d %H:%M:%S %z'
 
@@ -24,10 +32,6 @@ stages:
 
   script:
   - date '+%Y-%m-%d %H:%M:%S %z'
-
-  - if [ -z "$VARIANT_TAG" ]; then echo "VARIANT_TAG is empty" && exit 1; fi
-  - if [ -z "$VARIANT_TAG_WITH_VERSION" ]; then echo "VARIANT_TAG_WITH_VERSION is empty" && exit 1; fi
-  - if [ -z "$VARIANT_BUILD_DIR" ]; then echo "VARIANT_BUILD_DIR is empty" && exit 1; fi
 
   - docker build
     -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}"
@@ -63,9 +67,9 @@ $( $VARIANTS | % {
 build-$( $_['tag'] ):
   <<: *build_definition
   variables:
-    VARIANT_TAG: "$( $_['tag'] )"
-    VARIANT_TAG_WITH_VERSION: "$( $_['tag'] )-v$( $_['version'] )"
-    VARIANT_BUILD_DIR: "$( $_['build_dir_rel'] )"
+    VARIANT_TAG: $( $_['tag'] )
+    VARIANT_TAG_WITH_VERSION: $( $_['tag'] )-`$CI_COMMIT_REF_NAME
+    VARIANT_BUILD_DIR: $( $_['build_dir_rel'] )
 
 "@
 })
