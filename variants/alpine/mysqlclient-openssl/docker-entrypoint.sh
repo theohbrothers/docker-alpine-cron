@@ -26,7 +26,7 @@ fi
 CRONTAB="/var/spool/cron/crontabs/$CRON_USER"
 
 # Create our cron from the env var if present
-if [ -n "$CRON" ];
+if [ -n "$CRON" ]; then
     output "Create crontab $CRONTAB"
     echo -e "$CRON" > "$CRONTAB"
 fi
