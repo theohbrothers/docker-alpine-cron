@@ -19,7 +19,8 @@ Packages included: `curl`, `wget`
 
 Create a crontab with 2 crons
 
-```
+```sh
+#!/bin/sh
 docker run -d \
     -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"'
     -v /path/to/cronscripts/:/cronscripts/ \
