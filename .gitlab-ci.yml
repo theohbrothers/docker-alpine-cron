@@ -58,26 +58,26 @@ build-bare:
   <<: *build_definition
   variables:
     VARIANT_TAG: "bare"
-    VARIANT_TAG_WITH_VERSION: "bare-v1.0.1"
+    VARIANT_TAG_WITH_VERSION: "bare-v1.0.2a"
     VARIANT_BUILD_DIR: "variants/alpine/bare"
 
 build-openssl:
   <<: *build_definition
   variables:
     VARIANT_TAG: "openssl"
-    VARIANT_TAG_WITH_VERSION: "openssl-v1.0.1"
+    VARIANT_TAG_WITH_VERSION: "openssl-v1.0.2a"
     VARIANT_BUILD_DIR: "variants/alpine/openssl"
 
 build-mysqlclient:
   <<: *build_definition
   variables:
     VARIANT_TAG: "mysqlclient"
-    VARIANT_TAG_WITH_VERSION: "mysqlclient-v1.0.1"
+    VARIANT_TAG_WITH_VERSION: "mysqlclient-v1.0.2a"
     VARIANT_BUILD_DIR: "variants/alpine/mysqlclient"
 
 build-mysqlclient-openssl:
   <<: *build_definition
   variables:
     VARIANT_TAG: "mysqlclient-openssl"
-    VARIANT_TAG_WITH_VERSION: "mysqlclient-openssl-v1.0.1"
+    VARIANT_TAG_WITH_VERSION: "mysqlclient-openssl-v1.0.2a"
     VARIANT_BUILD_DIR: "variants/alpine/mysqlclient-openssl"

@@ -23,12 +23,20 @@ if [ ! $? = 0 ]; then
     exit 1
 fi
 
-# Ensure our crontab doesn't have write permissions
 # NOTE: On alpine, /var/spool/cron/crontabs/ points to /etc/crontabs/
 CRONTAB="/var/spool/cron/crontabs/$CRON_USER"
-output "Setting permissions on crontab: $CRONTAB"
+
+# Create our cron from the env var if present
+if [ -n "$CRON" ];
+    output "Create crontab $CRONTAB"
+    echo -e "$CRON" > "$CRONTAB"
+fi
+
+# Ensure our crontab doesn't have write permissions
+output "Setting owner and permissions on crontab: $CRONTAB"
 if [ -f "$CRONTAB" ]; then
-    chmod 440 "$CRONTAB"
+    chown "$CRON_USER:$CRON_USER" "$CRONTAB"
+    chmod 600 "$CRONTAB"
 else
     error "No such crontab: $CRONTAB"
 fi
@@ -38,7 +46,7 @@ CRONSCRIPTS_DIR=/cronscripts
 output "Setting permissions on cron scripts directory: $CRONSCRIPTS_DIR"
 if [ -d "$CRONSCRIPTS_DIR" ]; then
     chown "$CRON_USER:$CRON_USER" "$CRONSCRIPTS_DIR"
-    chmod -R 750 "$CRONSCRIPTS_DIR"
+    chmod -R u+x "$CRONSCRIPTS_DIR"
 fi
 
 exec "$@"
