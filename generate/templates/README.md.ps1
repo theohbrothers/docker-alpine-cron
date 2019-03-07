@@ -1,7 +1,7 @@
 @"
 # docker-alpine-cron
 
-Packages included: `curl`, `wget`
+Packages included for all images: `curl`, `wget`
 
 | Tags |
 |:-------:| $( $VARIANTS | % {
