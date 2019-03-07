@@ -1,5 +1,5 @@
 @"
-# alpine-cron
+# docker-alpine-cron
 
 Packages included: `curl`, `wget`
 
