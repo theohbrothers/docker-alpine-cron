@@ -5,10 +5,10 @@
 Packages included for all images: curl, wget
 
 | Tags |
-|:-------:|
-| `:bare` |
-| `:openssl` |
-| `:mysqlclient` |
+|:-------:| 
+| `:bare` | 
+| `:openssl` | 
+| `:mysqlclient` | 
 | `:mysqlclient-openssl` |
 
 ## Steps

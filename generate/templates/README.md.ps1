@@ -1,6 +1,8 @@
 @"
 # docker-alpine-cron
 
+[![pipeline status](https://gitlab.com/leojonathanoh/docker-alpine-cron/badges/dev/pipeline.svg)](https://gitlab.com/leojonathanoh/docker-alpine-cron/commits/dev)
+
 Packages included for all images: `curl`, `wget`
 
 | Tags |
