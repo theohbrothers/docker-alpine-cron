@@ -3,7 +3,7 @@
 [![pipeline status](https://gitlab.com/leojonathanoh/docker-alpine-cron/badges/dev/pipeline.svg)](https://gitlab.com/leojonathanoh/docker-alpine-cron/commits/dev)
 [![github-tag](https://img.shields.io/github/tag/leojonathanoh/docker-alpine-cron)](https://github.com/leojonathanoh/docker-alpine-cron/releases/)
 [![docker-image-size](https://img.shields.io/microbadger/image-size/leojonathanoh/docker-alpine-cron/latest)](https://hub.docker.com/r/leojonathanoh/docker-alpine-cron)
-[![docker-image-size](https://img.shields.io/microbadger/image-size/leojonathanoh/docker-alpine-cron/latest)](https://hub.docker.com/r/leojonathanoh/docker-alpine-cron)
+[![docker-image-layers](https://img.shields.io/microbadger/layers/leojonathanoh/docker-alpine-cron/latest)](https://hub.docker.com/r/leojonathanoh/docker-alpine-cron)
 
 Packages included for all images: curl, wget
 
