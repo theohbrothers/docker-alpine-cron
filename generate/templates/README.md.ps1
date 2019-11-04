@@ -1,10 +1,10 @@
 @"
 # docker-alpine-cron
 
-[![github-actions](https://github.com/leojonathanoh/docker-alpine-cron/workflows/build/badge.svg)](https://github.com/leojonathanoh/docker-alpine-cron/actions)
-[![github-tag](https://img.shields.io/github/tag/leojonathanoh/docker-alpine-cron)](https://github.com/leojonathanoh/docker-alpine-cron/releases/)
-[![docker-image-size](https://img.shields.io/microbadger/image-size/leojonathanoh/docker-alpine-cron/latest)](https://hub.docker.com/r/leojonathanoh/docker-alpine-cron)
-[![docker-image-layers](https://img.shields.io/microbadger/layers/leojonathanoh/docker-alpine-cron/latest)](https://hub.docker.com/r/leojonathanoh/docker-alpine-cron)
+[![github-actions](https://github.com/theohbrothers/docker-alpine-cron/workflows/build/badge.svg)](https://github.com/theohbrothers/docker-alpine-cron/actions)
+[![github-tag](https://img.shields.io/github/tag/theohbrothers/docker-alpine-cron)](https://github.com/theohbrothers/docker-alpine-cron/releases/)
+[![docker-image-size](https://img.shields.io/microbadger/image-size/theohbrothers/docker-alpine-cron/latest)](https://hub.docker.com/r/theohbrothers/docker-alpine-cron)
+[![docker-image-layers](https://img.shields.io/microbadger/layers/theohbrothers/docker-alpine-cron/latest)](https://hub.docker.com/r/theohbrothers/docker-alpine-cron)
 
 Packages included for all images: `curl`, `wget`
 
@@ -30,7 +30,7 @@ Create a crontab with 2 crons
 docker run -d \
     -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"'
     -v /path/to/cronscripts/:/cronscripts/ \
-    leojonathanoh/alpine-cron:bare
+    theohbrothers/docker-alpine-cron:bare
 ```
 
 ## Environment variables
@@ -48,7 +48,7 @@ docker run -d \
 
 ## Docker Secrets
 
-- Since a `/etc/environment` file is created automatically to make environment variables available to every cron, any sensitive environment variables will get written to the disk. To avoid that, you may try adding [two shell functions like this](https://gitlab.com/leojonathanoh/hlstatsxce-perl/blob/master/variants/alpine/cron/docker-entrypoint.sh) to the begining of each of your cron-called scripts to automatically populate env var(s) with secrets. Then, pass in environment variables to the Docker container using the syntax `MY_ENV_VAR=DOCKER-SECRET:your_docket_secret_name`, along with the secret `your_docket_secret_name` -- the result is that when the cron is run, the env var `MY_ENV_VAR` gets populated with the value of the secret. (Mine is a slightly modified version for a cleaner syntax; props to the [original author](https://gist.github.com/bvis/b78c1e0841cfd2437f03e20c1ee059fe#file-env_secrets_expand-sh)).
+- Since a `/etc/environment` file is created automatically to make environment variables available to every cron, any sensitive environment variables will get written to the disk. To avoid that, you may try adding [two shell functions like this](https://gitlab.com/theohbrothers/hlstatsxce-perl/blob/master/variants/alpine/cron/docker-entrypoint.sh) to the begining of each of your cron-called scripts to automatically populate env var(s) with secrets. Then, pass in environment variables to the Docker container using the syntax `MY_ENV_VAR=DOCKER-SECRET:your_docket_secret_name`, along with the secret `your_docket_secret_name` -- the result is that when the cron is run, the env var `MY_ENV_VAR` gets populated with the value of the secret. (Mine is a slightly modified version for a cleaner syntax; props to the [original author](https://gist.github.com/bvis/b78c1e0841cfd2437f03e20c1ee059fe#file-env_secrets_expand-sh)).
 
 ## FAQ
 
