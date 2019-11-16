@@ -1,5 +1,4 @@
 # Docker image variants' definitions
-$VARIANTS_VERSION = "1.0.3"
 $VARIANTS = @(
     @{
         tag = 'bare'
@@ -21,7 +20,6 @@ $VARIANTS = @(
 
 # Docker image variants' definitions (shared)
 $VARIANTS_SHARED = @{
-    version = $VARIANTS_VERSION
     buildContextFiles = @{
         templates = @{
             'Dockerfile' = @{
