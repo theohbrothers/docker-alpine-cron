@@ -5,14 +5,16 @@
 [![docker-image-size](https://img.shields.io/microbadger/image-size/theohbrothers/docker-alpine-cron/latest)](https://hub.docker.com/r/theohbrothers/docker-alpine-cron)
 [![docker-image-layers](https://img.shields.io/microbadger/layers/theohbrothers/docker-alpine-cron/latest)](https://hub.docker.com/r/theohbrothers/docker-alpine-cron)
 
+Lightweight alpine with busybox crond.
+
 Packages included for all images: curl, wget
 
 | Tags |
 |:-------:| 
-| `:bare` | 
-| `:openssl` | 
-| `:mysqlclient` | 
-| `:mysqlclient-openssl` |
+| `:alpine-3.8` | 
+| `:mysqlclient-alpine-3.8` | 
+| `:openssl-alpine-3.8` | 
+| `:mysqlclient-openssl-alpine-3.8` |
 
 ## Steps
 
