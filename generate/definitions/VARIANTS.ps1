@@ -5,7 +5,7 @@ $local:VARIANTS_MATRIX = @(
         distro = 'alpine'
         distro_version = '3.8'
         subvariants = @(
-            @{ components = @() }
+            @{ components = @(); tag_as_latest = $true }
             @{ components = @( 'mysqlclient' ) }
             @{ components = @( 'openssl' ) }
             @{ components = @( 'mysqlclient', 'openssl' ) }
