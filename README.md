@@ -9,10 +9,9 @@ Packages included for all images: curl, wget
 
 | Tags |
 |:-------:| 
-| `:bare` | 
-| `:openssl` | 
-| `:mysqlclient` | 
-| `:mysqlclient-openssl` |
+| `:mysqlclient-alpine-3.8` | 
+| `:openssl-alpine-3.8` | 
+| `:mysqlclient-openssl-alpine-3.8` |
 
 ## Steps
 
