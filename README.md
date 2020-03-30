@@ -10,11 +10,12 @@ Lightweight alpine with busybox crond.
 Packages included for all images: curl, wget
 
 | Tags |
-|:-------:| 
-| `:alpine-3.8` | 
-| `:mysqlclient-alpine-3.8` | 
-| `:openssl-alpine-3.8` | 
+|:-------:|
+| `:alpine-3.8`, `:latest` |
+| `:mysqlclient-alpine-3.8` |
+| `:openssl-alpine-3.8` |
 | `:mysqlclient-openssl-alpine-3.8` |
+
 
 ## Steps
 

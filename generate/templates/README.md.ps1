@@ -11,9 +11,22 @@ Lightweight alpine with busybox crond.
 Packages included for all images: `curl`, `wget`
 
 | Tags |
-|:-------:| $( $VARIANTS | % {
-"`n| ``:$( $_['tag'] )`` |"
-})
+|:-------:|
+$(
+($VARIANTS | % {
+    if ( $_['tag_as_latest'] ) {
+@"
+| ``:$( $_['tag'] )``, ``:latest`` |
+
+"@
+    }else {
+@"
+| ``:$( $_['tag'] )`` |
+
+"@
+    }
+}) -join ''
+)
 
 "@ + @'
 
