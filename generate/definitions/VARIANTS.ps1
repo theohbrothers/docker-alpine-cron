@@ -1,11 +1,13 @@
-# Docker image variants' definitions
+$local:VARIANTS_DISTRO_VERSIONS = @(
+    '3.8'
+)
 # Docker image variants' definitions
 $local:VARIANTS_MATRIX = @(
     @{
         distro = 'alpine'
         distro_version = '3.8'
         subvariants = @(
-            @{ components = @(); tag_as_latest = $true }
+            @{ components = @(); tag_as_latest = if ($v -eq $v -eq $local:VARIANTS_DISTRO_VERSIONS[0]) { $true } else { $false } }
             @{ components = @( 'mysqlclient' ) }
             @{ components = @( 'openssl' ) }
             @{ components = @( 'mysqlclient', 'openssl' ) }
@@ -22,11 +24,10 @@ $VARIANTS = @(
                     distro_version = $variant['distro_version']
                     components = $subVariant['components']
                 }
-                # Docker image tag. E.g. 'v2.3.0.0-alpine-3.6'
+                # Docker image tag. E.g. '3.8-openssl'
                 tag = @(
-                        $subVariant['components'] | ? { $_ }
-                        $variant['distro']
                         $variant['distro_version']
+                        $subVariant['components'] | ? { $_ }
                 ) -join '-'
                 tag_as_latest = if ( $subVariant.Contains('tag_as_latest') ) {
                                     $subVariant['tag_as_latest']

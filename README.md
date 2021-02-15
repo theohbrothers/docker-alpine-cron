@@ -11,10 +11,10 @@ Packages included for all images: curl, wget
 
 | Tags |
 |:-------:|
-| `:alpine-3.8`, `:latest` |
-| `:mysqlclient-alpine-3.8` |
-| `:openssl-alpine-3.8` |
-| `:mysqlclient-openssl-alpine-3.8` |
+| `:3.8`, `:latest` |
+| `:3.8-mysqlclient` |
+| `:3.8-openssl` |
+| `:3.8-mysqlclient-openssl` |
 
 
 ## Steps

@@ -6,12 +6,12 @@ on:
     - release
 
 jobs:
-  build-alpine-3-8:
+  build-3-8:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: alpine-3.8
-      # VARIANT_TAG_WITH_REF: alpine-3.8-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/alpine-3.8
+      VARIANT_TAG: 3.8
+      # VARIANT_TAG_WITH_REF: 3.8-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/3.8
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
@@ -61,12 +61,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-mysqlclient-alpine-3-8:
+  build-3-8-mysqlclient:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: mysqlclient-alpine-3.8
-      # VARIANT_TAG_WITH_REF: mysqlclient-alpine-3.8-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/mysqlclient-alpine-3.8
+      VARIANT_TAG: 3.8-mysqlclient
+      # VARIANT_TAG_WITH_REF: 3.8-mysqlclient-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/3.8-mysqlclient
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
@@ -114,12 +114,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-openssl-alpine-3-8:
+  build-3-8-openssl:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: openssl-alpine-3.8
-      # VARIANT_TAG_WITH_REF: openssl-alpine-3.8-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/openssl-alpine-3.8
+      VARIANT_TAG: 3.8-openssl
+      # VARIANT_TAG_WITH_REF: 3.8-openssl-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/3.8-openssl
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
@@ -167,12 +167,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-mysqlclient-openssl-alpine-3-8:
+  build-3-8-mysqlclient-openssl:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: mysqlclient-openssl-alpine-3.8
-      # VARIANT_TAG_WITH_REF: mysqlclient-openssl-alpine-3.8-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/mysqlclient-openssl-alpine-3.8
+      VARIANT_TAG: 3.8-mysqlclient-openssl
+      # VARIANT_TAG_WITH_REF: 3.8-mysqlclient-openssl-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/3.8-mysqlclient-openssl
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
