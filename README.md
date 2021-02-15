@@ -5,7 +5,7 @@
 [![docker-image-size](https://img.shields.io/microbadger/image-size/theohbrothers/docker-alpine-cron/latest)](https://hub.docker.com/r/theohbrothers/docker-alpine-cron)
 [![docker-image-layers](https://img.shields.io/microbadger/layers/theohbrothers/docker-alpine-cron/latest)](https://hub.docker.com/r/theohbrothers/docker-alpine-cron)
 
-Lightweight alpine with busybox crond.
+Dockerized alpine with busybox crond and useful tools.
 
 Packages included for all images: curl, wget
 
