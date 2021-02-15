@@ -1,4 +1,5 @@
 $local:VARIANTS_DISTRO_VERSIONS = @(
+    '3.9'
     '3.8'
 )
 # Docker image variants' definitions
