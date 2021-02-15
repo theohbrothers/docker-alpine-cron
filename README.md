@@ -65,7 +65,12 @@ docker run -d \
 
 ## Secrets
 
-- Since a `/etc/environment` file is created automatically to make environment variables available to every cron, any sensitive environment variables will get written to the disk. To avoid that, you may try adding [two shell functions like this](https://gitlab.com/theohbrothers/hlstatsxce-perl/blob/master/variants/alpine/cron/docker-entrypoint.sh) to the begining of each of your cron-called scripts to automatically populate env var(s) with secrets. Then, pass in environment variables to the Docker container using the syntax `MY_ENV_VAR=DOCKER-SECRET:your_docket_secret_name`, along with the secret `your_docket_secret_name` -- the result is that when the cron is run, the env var `MY_ENV_VAR` gets populated with the value of the secret. (Mine is a slightly modified version for a cleaner syntax; props to the [original author](https://gist.github.com/bvis/b78c1e0841cfd2437f03e20c1ee059fe#file-env_secrets_expand-sh)).
+Since a `/etc/environment` file is created automatically to make environment variables available to every cron, any sensitive environment variables will get written to the disk. To avoid that:
+
+- Add [shell functions like this](https://github.com/startersclan/docker-hlstatsxce-daemon/blob/v1.6.19/variants/alpine/cron/docker-entrypoint.sh#L7-L58) at the beginning of your cron-called script
+- Optional: Specify the secrets folder by using environment variable `ENV_SECRETS_DIR`. By default, its value is `/run/secrets`
+- Declare environment variables using syntax `MY_ENV_VAR=DOCKER-SECRET:my_docker_secret_name`, where `my_docker_secret_name` is the secret mounted on `$ENV_SECRETS_DIR/my_docker_secret_name`
+- When the cron script is run, the env var `MY_ENV_VAR` gets populated with the contents of the secret file `$ENV_SECRETS_DIR/my_docker_secret_name`
 
 ## FAQ
 
