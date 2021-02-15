@@ -10,18 +10,18 @@ Dockerized alpine with busybox crond and useful tools.
 
 Packages included for all images: ``curl``, ``wget``
 
-| Tag | Dockerfile Build Context  |
-|:-------:|:---------:|:---------:
+| Tag | Dockerfile Build Context |
+|:-------:|:---------:|
 $(
 ($VARIANTS | % {
     if ( $_['tag_as_latest'] ) {
 @"
-| ``:$( $_['tag'] )``, ``:latest`` | [View](variants/$( $_['tag'] ) )
+| ``:$( $_['tag'] )``, ``:latest`` | [View](variants/$( $_['tag'] ) ) |
 
 "@
     }else {
 @"
-| ``:$( $_['tag'] )`` | [View](variants/$( $_['tag'] ) )
+| ``:$( $_['tag'] )`` | [View](variants/$( $_['tag'] ) ) |
 
 "@
     }
@@ -29,7 +29,6 @@ $(
 )
 
 "@ + @'
-
 ## Steps
 
 1. Declare the contents of the crontab in `CRON` environment variable. Alternatively, mount crontab on `/var/spool/cron/crontabs/<user>`.
