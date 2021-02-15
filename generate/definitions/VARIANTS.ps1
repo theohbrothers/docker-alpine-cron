@@ -3,15 +3,17 @@ $local:VARIANTS_DISTRO_VERSIONS = @(
 )
 # Docker image variants' definitions
 $local:VARIANTS_MATRIX = @(
-    @{
-        distro = 'alpine'
-        distro_version = '3.8'
-        subvariants = @(
-            @{ components = @(); tag_as_latest = if ($v -eq $v -eq $local:VARIANTS_DISTRO_VERSIONS[0]) { $true } else { $false } }
-            @{ components = @( 'mysqlclient' ) }
-            @{ components = @( 'openssl' ) }
-            @{ components = @( 'mysqlclient', 'openssl' ) }
-        )
+    foreach ($v in $local:VARIANTS_DISTRO_VERSIONS) {
+        @{
+            distro = 'alpine'
+            distro_version =  $v
+            subvariants = @(
+                @{ components = @(); tag_as_latest = if ($v -eq $v -eq $local:VARIANTS_DISTRO_VERSIONS[0]) { $true } else { $false } }
+                @{ components = @( 'mysqlclient' ) }
+                @{ components = @( 'openssl' ) }
+                @{ components = @( 'mysqlclient', 'openssl' ) }
+            )
+        }
     }
 )
 $VARIANTS = @(
