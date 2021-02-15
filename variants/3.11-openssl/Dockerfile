@@ -1,4 +1,11 @@
-@"
+FROM alpine:3.11
+
+RUN apk add --no-cache curl wget
+
+RUN apk add --no-cache openssl
+
+
+
 # This is the only signal from the docker host that appears to stop crond
 STOPSIGNAL SIGKILL
 
@@ -9,4 +16,3 @@ VOLUME ["/cronscripts"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["crond", "-f"]
-"@

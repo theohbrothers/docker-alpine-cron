@@ -1,4 +1,3 @@
-@'
 #!/bin/sh
 
 # This makes environment variables available to everyone, including crond and its crons
@@ -50,4 +49,3 @@ if [ -d "$CRONSCRIPTS_DIR" ]; then
 fi
 
 exec "$@"
-'@
