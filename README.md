@@ -47,7 +47,7 @@ Create a crontab with 2 crons
 docker run -d \
     -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"'
     -v /path/to/cronscripts/:/cronscripts/ \
-    theohbrothers/docker-alpine-cron:bare
+    theohbrothers/docker-alpine-cron:3.12
 ```
 
 ## Environment variables

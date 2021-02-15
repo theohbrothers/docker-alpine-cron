@@ -35,18 +35,22 @@ $(
 2. If the crons refer to any scripts, you may mount a folder containing those scripts on `/cronscripts` or whereever you want
 3. Run the container. If no errors are shown, your cron should be ready.
 
+
+'@ + @"
 ## Example
 
 Create a crontab with 2 crons
 
-```sh
+``````sh
 #!/bin/sh
 docker run -d \
     -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"'
     -v /path/to/cronscripts/:/cronscripts/ \
-    theohbrothers/docker-alpine-cron:bare
-```
+    theohbrothers/docker-alpine-cron:$( $VARIANTS | ? { $_['tag_as_latest'] } | Select -First 1 | % { $_['tag'] } )
+``````
 
+
+"@ + @'
 ## Environment variables
 
 | Name | Default value | Description
