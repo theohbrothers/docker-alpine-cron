@@ -1,8 +1,4 @@
 @"
-# Cleanup
-RUN rm -rf /usr/src/php \
-    && rm -rf /var/cache/apk/*
-
 # This is the only signal from the docker host that appears to stop crond
 STOPSIGNAL SIGKILL
 
