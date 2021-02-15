@@ -5,11 +5,11 @@
 env > /etc/environment
 
 output() {
-    echo -e "[$( date '+%Y-%m-%d %H:%M:%S %z' )] $1"
+    echo -e "[$( date -u '+%Y-%m-%dT%H:%M:%S%z' )] $1"
 }
 
 error() {
-    echo -e "[$( date '+%Y-%m-%d %H:%M:%S %z' )] $1" >&2
+    echo -e "[$( date -u '+%Y-%m-%dT%H:%M:%S%z' )] $1" >&2
 }
 
 # Default to root as the cron user
