@@ -11,6 +11,10 @@ Packages included for all images: curl, wget
 
 | Tags |
 |:-------:|
+| `:3.11`, `:latest` |
+| `:3.11-mysqlclient` |
+| `:3.11-openssl` |
+| `:3.11-mysqlclient-openssl` |
 | `:3.10`, `:latest` |
 | `:3.10-mysqlclient` |
 | `:3.10-openssl` |
