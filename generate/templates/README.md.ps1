@@ -3,8 +3,7 @@
 
 [![github-actions](https://github.com/theohbrothers/docker-alpine-cron/workflows/ci-master-pr/badge.svg)](https://github.com/theohbrothers/docker-alpine-cron/actions)
 [![github-tag](https://img.shields.io/github/tag/theohbrothers/docker-alpine-cron)](https://github.com/theohbrothers/docker-alpine-cron/releases/)
-[![docker-image-size](https://img.shields.io/microbadger/image-size/theohbrothers/docker-alpine-cron/latest)](https://hub.docker.com/r/theohbrothers/docker-alpine-cron)
-[![docker-image-layers](https://img.shields.io/microbadger/layers/theohbrothers/docker-alpine-cron/latest)](https://hub.docker.com/r/theohbrothers/docker-alpine-cron)
+[![docker-image-size](https://img.shields.io/docker/image-size/theohbrothers/docker-alpine-cron/latest)](https://hub.docker.com/r/theohbrothers/docker-alpine-cron)
 
 Dockerized alpine with busybox crond and useful tools.
 
