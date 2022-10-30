@@ -1,6 +1,12 @@
 @"
-$(
-($VARIANT['_metadata']['components'] | % {
+FROM $( $VARIANT['_metadata']['distro'] ):$( $VARIANT['_metadata']['distro_version'] )
+
+RUN apk add --no-cache curl wget
+
+
+"@
+
+$VARIANT['_metadata']['components'] | % {
     $component = $_
 
     switch( $component ) {
@@ -25,6 +31,18 @@ RUN apk add --no-cache openssl
             throw "No such component: $component"
         }
     }
-}) -join ''
-)
+}
+
+@"
+# This is the only signal from the docker host that appears to stop crond
+STOPSIGNAL SIGKILL
+
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
+VOLUME ["/cronscripts"]
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["crond", "-f"]
+
 "@
