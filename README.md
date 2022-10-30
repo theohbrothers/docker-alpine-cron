@@ -80,3 +80,17 @@ Since a `/etc/environment` file is created automatically to make environment var
 - Ensure your mounted crontab's filename matches the `$CRON_USER` environment variable.
 - Ensure your crontab has a newline at the end of the file.
 - Use `docker logs` to check whether `crond` has spit out any messages about the syntax of your cron
+
+## Development
+
+Requires Windows `powershell` or [`pwsh`](https://github.com/PowerShell/PowerShell).
+
+```powershell
+# Install Generate-DockerImageVariants module: https://github.com/theohbrothers/Generate-DockerImageVariants
+Install-Module -Name Generate-DockerImageVariants -Repository PSGallery -Scope CurrentUser -Force -Verbose
+
+# Edit ./generate templates
+
+# Generate the variants
+Generate-DockerImageVariants .
+```
