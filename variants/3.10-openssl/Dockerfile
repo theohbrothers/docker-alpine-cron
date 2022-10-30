@@ -4,8 +4,6 @@ RUN apk add --no-cache curl wget
 
 RUN apk add --no-cache openssl
 
-
-
 # This is the only signal from the docker host that appears to stop crond
 STOPSIGNAL SIGKILL
 
