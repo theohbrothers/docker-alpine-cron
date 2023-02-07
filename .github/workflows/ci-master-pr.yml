@@ -2787,7 +2787,7 @@ jobs:
 
   update-dockerhub-description:
     needs: [build-3-12, build-3-12-mysqlclient, build-3-12-openssl, build-3-12-mysqlclient-openssl, build-3-11, build-3-11-mysqlclient, build-3-11-openssl, build-3-11-mysqlclient-openssl, build-3-10, build-3-10-mysqlclient, build-3-10-openssl, build-3-10-mysqlclient-openssl, build-3-9, build-3-9-mysqlclient, build-3-9-openssl, build-3-9-mysqlclient-openssl, build-3-8, build-3-8-mysqlclient, build-3-8-openssl, build-3-8-mysqlclient-openssl]
-    if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
