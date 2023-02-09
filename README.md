@@ -12,26 +12,26 @@ Packages included for all images: `curl`, `wget`
 
 | Tag | Dockerfile Build Context |
 |:-------:|:---------:|
-| `:3.12`, `:latest` | [View](variants/3.12 ) |
-| `:3.12-mysqlclient` | [View](variants/3.12-mysqlclient ) |
-| `:3.12-openssl` | [View](variants/3.12-openssl ) |
-| `:3.12-mysqlclient-openssl` | [View](variants/3.12-mysqlclient-openssl ) |
-| `:3.11`, `:latest` | [View](variants/3.11 ) |
-| `:3.11-mysqlclient` | [View](variants/3.11-mysqlclient ) |
-| `:3.11-openssl` | [View](variants/3.11-openssl ) |
-| `:3.11-mysqlclient-openssl` | [View](variants/3.11-mysqlclient-openssl ) |
-| `:3.10`, `:latest` | [View](variants/3.10 ) |
-| `:3.10-mysqlclient` | [View](variants/3.10-mysqlclient ) |
-| `:3.10-openssl` | [View](variants/3.10-openssl ) |
-| `:3.10-mysqlclient-openssl` | [View](variants/3.10-mysqlclient-openssl ) |
-| `:3.9`, `:latest` | [View](variants/3.9 ) |
-| `:3.9-mysqlclient` | [View](variants/3.9-mysqlclient ) |
-| `:3.9-openssl` | [View](variants/3.9-openssl ) |
-| `:3.9-mysqlclient-openssl` | [View](variants/3.9-mysqlclient-openssl ) |
-| `:3.8`, `:latest` | [View](variants/3.8 ) |
-| `:3.8-mysqlclient` | [View](variants/3.8-mysqlclient ) |
-| `:3.8-openssl` | [View](variants/3.8-openssl ) |
-| `:3.8-mysqlclient-openssl` | [View](variants/3.8-mysqlclient-openssl ) |
+| `:3.12`, `:latest` | [View](variants/3.12) |
+| `:3.12-mysqlclient` | [View](variants/3.12-mysqlclient) |
+| `:3.12-openssl` | [View](variants/3.12-openssl) |
+| `:3.12-mysqlclient-openssl` | [View](variants/3.12-mysqlclient-openssl) |
+| `:3.11`, `:latest` | [View](variants/3.11) |
+| `:3.11-mysqlclient` | [View](variants/3.11-mysqlclient) |
+| `:3.11-openssl` | [View](variants/3.11-openssl) |
+| `:3.11-mysqlclient-openssl` | [View](variants/3.11-mysqlclient-openssl) |
+| `:3.10`, `:latest` | [View](variants/3.10) |
+| `:3.10-mysqlclient` | [View](variants/3.10-mysqlclient) |
+| `:3.10-openssl` | [View](variants/3.10-openssl) |
+| `:3.10-mysqlclient-openssl` | [View](variants/3.10-mysqlclient-openssl) |
+| `:3.9`, `:latest` | [View](variants/3.9) |
+| `:3.9-mysqlclient` | [View](variants/3.9-mysqlclient) |
+| `:3.9-openssl` | [View](variants/3.9-openssl) |
+| `:3.9-mysqlclient-openssl` | [View](variants/3.9-mysqlclient-openssl) |
+| `:3.8`, `:latest` | [View](variants/3.8) |
+| `:3.8-mysqlclient` | [View](variants/3.8-mysqlclient) |
+| `:3.8-openssl` | [View](variants/3.8-openssl) |
+| `:3.8-mysqlclient-openssl` | [View](variants/3.8-mysqlclient-openssl) |
 
 ## Example
 
