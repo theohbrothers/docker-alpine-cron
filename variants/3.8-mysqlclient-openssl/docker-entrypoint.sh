@@ -1,4 +1,5 @@
 #!/bin/sh
+set -eu
 
 # This makes environment variables available to everyone, including crond and its crons
 env > /etc/environment
@@ -12,7 +13,8 @@ error() {
 }
 
 # Default to root as the cron user
-[ -z "$CRON_USER" ] && CRON_USER=root
+CRON_USER=${CRON_USER:-root}
+CRON=${CRON:-}
 output "Will use user $CRON_USER for crons."
 
 # Check if the cron user exists
@@ -25,19 +27,15 @@ fi
 # NOTE: On alpine, /var/spool/cron/crontabs/ points to /etc/crontabs/
 CRONTAB="/var/spool/cron/crontabs/$CRON_USER"
 
-# Create our cron from the env var if present
+# Create our crontab from the env var if present
 if [ -n "$CRON" ]; then
-    output "Create crontab $CRONTAB"
+    output "Creating crontab $CRONTAB"
     echo -e "$CRON" > "$CRONTAB"
-fi
-
-# Ensure our crontab doesn't have write permissions
-output "Setting owner and permissions on crontab: $CRONTAB"
-if [ -f "$CRONTAB" ]; then
+    output "Setting owner and permissions on crontab: $CRONTAB"
     chown "$CRON_USER:$CRON_USER" "$CRONTAB"
     chmod 600 "$CRONTAB"
 else
-    error "No such crontab: $CRONTAB"
+    echo "Not creating crontab because CRON environment variable is empty"
 fi
 
 exec "$@"
