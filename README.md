@@ -12,6 +12,10 @@ Packages included for all images: `curl`, `wget`
 
 | Tag | Dockerfile Build Context |
 |:-------:|:---------:|
+| `:3.17`, `:latest` | [View](variants/3.17) |
+| `:3.17-mysqlclient` | [View](variants/3.17-mysqlclient) |
+| `:3.17-openssl` | [View](variants/3.17-openssl) |
+| `:3.17-mysqlclient-openssl` | [View](variants/3.17-mysqlclient-openssl) |
 | `:3.15`, `:latest` | [View](variants/3.15) |
 | `:3.15-mysqlclient` | [View](variants/3.15-mysqlclient) |
 | `:3.15-openssl` | [View](variants/3.15-openssl) |
@@ -46,7 +50,7 @@ Create a crontab with 2 crons
 docker run -d \
     -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"'
     -v /path/to/cronscripts/:/cronscripts/ \
-    theohbrothers/docker-alpine-cron:3.15
+    theohbrothers/docker-alpine-cron:3.17
 ```
 
 ## Usage
