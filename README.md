@@ -37,15 +37,13 @@ Create a crontab with 2 crons
 #!/bin/sh
 docker run -d \
     -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"'
-    -v /path/to/cronscripts/:/cronscripts/ \
     theohbrothers/docker-alpine-cron:3.17
 ```
 
 ## Usage
 
 1. Declare the contents of the crontab in `CRON` environment variable. Alternatively, mount crontab on `/var/spool/cron/crontabs/<user>`.
-2. If the crons refer to any scripts, you may mount a folder containing those scripts on `/cronscripts` or whereever you want
-3. Run the container. If no errors are shown, your cron should be ready.
+2. Run the container. If no errors are shown, your cron should be ready.
 
 ## Environment variables
 
@@ -57,8 +55,7 @@ docker run -d \
 ## Entrypoint: `docker-entrypoint.sh`
 
 - A `/etc/environment` file is created at the beginning of the entrypoint script, which makes environment variables available to everyone, including crond.
-- The crontab at `/var/spool/cron/crontabs/<$CRON_USER>` is set to user-write-only permissions: `600`, and owned by `$CRON_USER`
-- The mountpoint /cronscripts/ is recursively set to have executable permissions at entrypoint: `u+x`
+- The crontab at `/var/spool/cron/crontabs/$CRON_USER` is set to user-write-only permissions: `600`, and owned by `$CRON_USER`
 
 ## Secrets
 

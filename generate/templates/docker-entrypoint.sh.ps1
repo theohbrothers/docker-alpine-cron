@@ -41,13 +41,5 @@ else
     error "No such crontab: $CRONTAB"
 fi
 
-# Any mounted scripts should have execute permissions
-CRONSCRIPTS_DIR=/cronscripts
-output "Setting permissions on cron scripts directory: $CRONSCRIPTS_DIR"
-if [ -d "$CRONSCRIPTS_DIR" ]; then
-    chown "$CRON_USER:$CRON_USER" "$CRONSCRIPTS_DIR"
-    chmod -R u+x "$CRONSCRIPTS_DIR"
-fi
-
 exec "$@"
 '@
