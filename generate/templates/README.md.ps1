@@ -68,7 +68,7 @@ docker run -it \
 
 | Name | Default value | Description
 |:-------:|:---------------:|:---------:|
-| `CRON` | `` | The cron expression. For multiple cron expressions, use `\n`. Use [crontab.guru](https://crontab.guru/) to customize crons. This will be set as the content of the crontab at `/var/spool/cron/crontabs/$CRON_USER`
+| `CRON` | '' | Required: The cron expression. For multiple cron expressions, use `\n`. Use [crontab.guru](https://crontab.guru/) to customize crons. This will be set as the content of the crontab at `/etc/crontabs/$CRON_USER`
 | `CRON_UID` | `0` | Optional: The UID of the user that the cron should run under. Default is `0` which is `root`
 | `CRON_GID` | `0` | Optional: The GID of the user that the cron should run under. Default is `0` which is `root`
 
