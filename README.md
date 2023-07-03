@@ -29,50 +29,97 @@ Packages included for all images: `curl`, `wget`
 | `:3.8-openssl` | [View](variants/3.8-openssl) |
 | `:3.8-mysqlclient-openssl` | [View](variants/3.8-mysqlclient-openssl) |
 
-## Example
+## Usage
 
-Create a crontab with 2 crons
+Example 1: Create one cron that runs as `root`
 
 ```sh
-#!/bin/sh
-docker run -d \
-    -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"'
+docker run -it \
+    -e CRON='* * * * * /bin/echo "hello"' \
     theohbrothers/docker-alpine-cron:3.17
 ```
 
-## Usage
+Example 2: Create two crons that run as `root`
 
-1. Declare the contents of the crontab in `CRON` environment variable. Alternatively, mount crontab on `/var/spool/cron/crontabs/<user>`.
-2. Run the container. If no errors are shown, your cron should be ready.
+```sh
+docker run -it \
+    -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"' \
+    theohbrothers/docker-alpine-cron:3.17
+```
 
-## Environment variables
+Example 3: Create two crons that run as UID `3000` and GID `4000`
+
+```sh
+docker run -it \
+    -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"' \
+    -e CRON_UID=3000 \
+    -e CRON_GID=4000 \
+    theohbrothers/docker-alpine-cron:3.17
+```
+
+### Environment variables
 
 | Name | Default value | Description
 |:-------:|:---------------:|:---------:|
-| `CRON_USER` | `root` | Sets the user that the crontab will run under (E.g. for user `nobody`, the crontab should be mounted at `/var/spool/cron/crontabs/nobody`.). In most cases, you should just use `root`
-| `CRON` | `''` | Optional. If value is non-empty, it will be set as the content of the crontab at `/var/spool/cron/crontabs/$CRON_USER`
+| `CRON` | `` | The cron expression. For multiple cron expressions, use `\n`. Use [crontab.guru](https://crontab.guru/) to customize crons. This will be set as the content of the crontab at `/var/spool/cron/crontabs/$CRON_USER`
+| `CRON_UID` | `0` | Optional: The UID of the user that the cron should run under. Default is `0` which is `root`
+| `CRON_GID` | `0` | Optional: The GID of the user that the cron should run under. Default is `0` which is `root`
 
-## Entrypoint: `docker-entrypoint.sh`
+### Entrypoint: `docker-entrypoint.sh`
 
-- A `/etc/environment` file is created at the beginning of the entrypoint script, which makes environment variables available to everyone, including crond.
-- The crontab at `/var/spool/cron/crontabs/$CRON_USER` is set to user-write-only permissions: `600`, and owned by `$CRON_USER`
+1. A `/etc/environment` file is created at the beginning of the entrypoint script, which makes environment variables available to everyone, including crond.
+1. A user of `CRON_UID` is created if it does not exist.
+1. A group of `CRON_GID` is created if it does not exist.
+1. The user of `CRON_UID` is added to the group of `CRON_GID` if membership does not exist.
+1. Crontab is created in `/etc/crontabs/<CRON_USER>`
 
-## Secrets
+### Secrets
 
 Since a `/etc/environment` file is created automatically to make environment variables available to every cron, any sensitive environment variables will get written to the disk. To avoid that:
 
-- Add [shell functions like this](https://github.com/startersclan/docker-hlstatsxce-daemon/blob/v1.6.19/variants/alpine/cron/docker-entrypoint.sh#L7-L58) at the beginning of your cron-called script
-- Optional: Specify the secrets folder by using environment variable `ENV_SECRETS_DIR`. By default, its value is `/run/secrets`
-- Declare environment variables using syntax `MY_ENV_VAR=DOCKER-SECRET:my_docker_secret_name`, where `my_docker_secret_name` is the secret mounted on `$ENV_SECRETS_DIR/my_docker_secret_name`
-- When the cron script is run, the env var `MY_ENV_VAR` gets populated with the contents of the secret file `$ENV_SECRETS_DIR/my_docker_secret_name`
+1. Add [shell functions like this](https://github.com/startersclan/docker-hlstatsxce-daemon/blob/v1.6.19/variants/alpine/cron/docker-entrypoint.sh#L7-L58) at the beginning of your cron-called script
+1. Optional: Specify the secrets folder by using environment variable `ENV_SECRETS_DIR`. By default, its value is `/run/secrets`
+1. Declare environment variables using syntax `MY_ENV_VAR=DOCKER-SECRET:my_docker_secret_name`, where `my_docker_secret_name` is the secret mounted on `$ENV_SECRETS_DIR/my_docker_secret_name`
+1. When the cron script is run, the env var `MY_ENV_VAR` gets populated with the contents of the secret file `$ENV_SECRETS_DIR/my_docker_secret_name`
 
 ## FAQ
 
+### Q: Why use a cron container?
+
+This image is only needed if there is no container orchestrator (E.g. Docker in standalone mode), or if there is a container orchestrator but without a cron scheduler (E.g. Docker in Swarm mode).
+
+If your orchestrator already provides an external scheduler (E.g. Kubernetes via `CronJob`), there's no need to use this image.
+
+### Q: Why use `CRON` environment variable? Just use `crontab -`
+
+Right. If the cron command is complex, and there is no need for customizing `CRON_UID` and `CRON_GID`, it is better to skip this image altogether and simply write everything in the entrypoint of the container manifest. For example, in Compose:
+
+```yaml
+version: '2.2'
+services:
+  some-cron:
+    image: alpine
+    tty: true
+    entrypoint:
+      - /bin/sh
+    command:
+      - -c
+      - |
+          set -eu
+
+          crontab - <<'EOF'
+          * * * * * /bin/echo "My super 'complex' cron command with quotes is better written in shell"
+          EOF
+
+          exec crond -f
+```
+
 ### Q: My cron is not running!
 
-- Ensure your mounted crontab's filename matches the `$CRON_USER` environment variable.
-- Ensure your crontab has a newline at the end of the file.
 - Use `docker logs` to check whether `crond` has spit out any messages about the syntax of your cron
+- If bind-mouting your own crontab in `/etc/crontabs`, ensure:
+  - the crontab is owned by `root:root` with `0600` permissions. See [here](https://unix.stackexchange.com/questions/642827/how-to-run-a-cronjob-as-a-non-root-user-in-a-docker-container-for-alpine-linux)
+  - the crontab has a newline at the end of the file
 
 ## Development
 
