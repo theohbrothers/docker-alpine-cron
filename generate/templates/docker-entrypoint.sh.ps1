@@ -5,31 +5,53 @@ set -eu
 # This makes environment variables available to everyone, including crond and its crons
 env > /etc/environment
 
-# Default to root as the cron user
-CRON_USER=${CRON_USER:-root}
+# Configuration
 CRON=${CRON:-}
-echo "Will use user $CRON_USER for crons."
+CRON_UID=${CRON_UID:-0} # Default is 'root' user
+CRON_GID=${CRON_GID:-0} # Default is 'root' user
+CRON_USER=$( (getent passwd "$CRON_UID" || echo 'cronuser') | cut -d ':' -f1 )
+if [ "$CRON_UID" = "$CRON_GID" ]; then
+    CRON_GROUP="$CRON_USER"
+else
+    CRON_GROUP=$( (getent group "$CRON_GID" || echo 'crongroup') | cut -d ':' -f1 )
+fi
+echo "Crons will run under user '$CRON_USER' of UID '$CRON_UID' and group '$CRON_GROUP' of GID '$CRON_GID'"
 
-# Check if the cron user exists
-id "$CRON_USER" >/dev/null 2>&1
-if [ ! $? = 0 ]; then
-    echo "User '$CRON_USER' specified by \$CRON_USER environment variable does not exist on the system!" >&2
+# Validation
+if [ -z "$CRON" ]; then
+    echo "CRON is empty."
     exit 1
 fi
 
-# NOTE: On alpine, /var/spool/cron/crontabs/ points to /etc/crontabs/
-CRONTAB="/var/spool/cron/crontabs/$CRON_USER"
-
-# Create our crontab from the env var if present
-if [ -n "$CRON" ]; then
-    echo "Creating crontab $CRONTAB"
-    echo -e "$CRON" > "$CRONTAB"
-    echo "Setting owner and permissions on crontab: $CRONTAB"
-    chown "$CRON_USER:$CRON_USER" "$CRONTAB"
-    chmod 600 "$CRONTAB"
+# Create user, group, and add membership
+if ! getent passwd "$CRON_UID" ; then
+    echo "Creating user '$CRON_USER' of UID '$CRON_UID'"
+    adduser -D -u "$CRON_UID" "$CRON_USER"
 else
-    echo "Not creating crontab because CRON environment variable is empty"
+    echo "No need to create user '$CRON_USER' of UID '$CRON_UID' since it already exists"
+fi
+if ! getent group "$CRON_GID" > /dev/null 2>&1; then
+    echo "Creating group '$CRON_GROUP' of GID '$CRON_GID'"
+    addgroup -g "$CRON_GID" "$CRON_GROUP"
+else
+    echo "No need to create group '$CRON_GROUP' of GID '$CRON_GID' since it already exists"
+fi
+if ! groups "$CRON_USER" 2> /dev/null | grep "\b$CRON_GROUP\b" > /dev/null; then
+    echo "Adding user '$CRON_USER' to group '$CRON_GROUP'"
+    adduser "$CRON_USER" "$CRON_GROUP"
+else
+    echo "No need to add user '$CRON_USER' to group '$CRON_GROUP' since membership exists"
 fi
 
+# Create the crontab. On alpine, /var/spool/cron/crontabs/ points to /etc/crontabs/
+# For crons to run, crontab(s) must be owned by root with 0600 permissions. See: https://unix.stackexchange.com/questions/642827/how-to-run-a-cronjob-as-a-non-root-user-in-a-docker-container-for-alpine-linux
+CRONTAB="/etc/crontabs/$CRON_USER"
+echo "Creating crontab: $CRONTAB"
+echo -e "$CRON" > "$CRONTAB"
+chown "root:root" "$CRONTAB"
+chmod 0600 "$CRONTAB"
+ls -al "$CRONTAB"
+
+echo "Running crond"
 exec "$@"
 '@
