@@ -24,10 +24,6 @@ Packages included for all images: `curl`, `wget`
 | `:3.12-mysqlclient` | [View](variants/3.12-mysqlclient) |
 | `:3.12-openssl` | [View](variants/3.12-openssl) |
 | `:3.12-mysqlclient-openssl` | [View](variants/3.12-mysqlclient-openssl) |
-| `:3.8`, `:latest` | [View](variants/3.8) |
-| `:3.8-mysqlclient` | [View](variants/3.8-mysqlclient) |
-| `:3.8-openssl` | [View](variants/3.8-openssl) |
-| `:3.8-mysqlclient-openssl` | [View](variants/3.8-mysqlclient-openssl) |
 
 ## Usage
 

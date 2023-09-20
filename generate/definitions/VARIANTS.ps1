@@ -2,7 +2,6 @@ $local:VARIANTS_DISTRO_VERSIONS = @(
     '3.17'
     '3.15'
     '3.12'
-    '3.8'
 )
 # Docker image variants' definitions
 $local:VARIANTS_MATRIX = @(
