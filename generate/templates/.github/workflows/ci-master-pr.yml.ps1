@@ -86,6 +86,7 @@ foreach ($g in $groups) {
         username: `${{ secrets.DOCKERHUB_REGISTRY_USER }}
         password: `${{ secrets.DOCKERHUB_REGISTRY_PASSWORD }}
 
+
 "@
 
 foreach ($v in $g.Group) {

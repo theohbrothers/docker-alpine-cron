@@ -76,6 +76,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_REGISTRY_USER }}
         password: ${{ secrets.DOCKERHUB_REGISTRY_PASSWORD }}
+
     # This step generates the docker tags
     - name: Prepare
       id: prep-3-17
@@ -396,6 +397,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_REGISTRY_USER }}
         password: ${{ secrets.DOCKERHUB_REGISTRY_PASSWORD }}
+
     # This step generates the docker tags
     - name: Prepare
       id: prep-3-15
@@ -716,6 +718,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_REGISTRY_USER }}
         password: ${{ secrets.DOCKERHUB_REGISTRY_PASSWORD }}
+
     # This step generates the docker tags
     - name: Prepare
       id: prep-3-12
