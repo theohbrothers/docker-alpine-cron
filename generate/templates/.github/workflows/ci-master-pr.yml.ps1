@@ -36,7 +36,7 @@ jobs:
 '@
 
 # Group variants by the package version
-$groups = $VARIANTS | Group-Object -Property { $_['_metadata']['package_version'] } | Sort-Object -Property Name -Descending
+$groups = $VARIANTS | Group-Object -Property { $_['_metadata']['package_version'] } | Sort-Object -Property { [version]$_.Name } -Descending
 $WORKFLOW_JOB_NAMES = $groups | % { "build-$( $_.Name.Replace('.', '-') )" }
 foreach ($g in $groups) {
 @"
