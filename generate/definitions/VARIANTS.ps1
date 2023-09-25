@@ -8,7 +8,7 @@ $local:VARIANTS_MATRIX = @(
     foreach ($v in $local:VARIANTS_DISTRO_VERSIONS) {
         @{
             distro = 'alpine'
-            distro_version =  $v
+            distro_version = $v
             subvariants = @(
                 @{ components = @(); tag_as_latest = if ($v -eq $v -eq $local:VARIANTS_DISTRO_VERSIONS[0]) { $true } else { $false } }
                 @{ components = @( 'mysqlclient' ) }
@@ -24,6 +24,7 @@ $VARIANTS = @(
             @{
                 # Metadata object
                 _metadata = @{
+                    package_version = $variant['distro_version']
                     distro = $variant['distro']
                     distro_version = $variant['distro_version']
                     components = $subVariant['components']
