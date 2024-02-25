@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Display system info (linux)
       run: |
@@ -61,7 +61,7 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Cache Docker layers
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /tmp/.buildx-cache
         key: ${{ runner.os }}-buildx-3.17-${{ github.sha }}
@@ -105,7 +105,7 @@ jobs:
     - name: 3.17 - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17
         platforms: 
@@ -119,7 +119,7 @@ jobs:
     - name: 3.17 - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17
         platforms: 
@@ -132,7 +132,7 @@ jobs:
 
     - name: 3.17 - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17
         platforms: 
@@ -173,7 +173,7 @@ jobs:
     - name: 3.17-mysqlclient - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17-mysqlclient
         platforms: 
@@ -187,7 +187,7 @@ jobs:
     - name: 3.17-mysqlclient - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17-mysqlclient
         platforms: 
@@ -200,7 +200,7 @@ jobs:
 
     - name: 3.17-mysqlclient - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17-mysqlclient
         platforms: 
@@ -240,7 +240,7 @@ jobs:
     - name: 3.17-openssl - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17-openssl
         platforms: 
@@ -254,7 +254,7 @@ jobs:
     - name: 3.17-openssl - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17-openssl
         platforms: 
@@ -267,7 +267,7 @@ jobs:
 
     - name: 3.17-openssl - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17-openssl
         platforms: 
@@ -307,7 +307,7 @@ jobs:
     - name: 3.17-mysqlclient-openssl - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17-mysqlclient-openssl
         platforms: 
@@ -321,7 +321,7 @@ jobs:
     - name: 3.17-mysqlclient-openssl - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17-mysqlclient-openssl
         platforms: 
@@ -334,7 +334,7 @@ jobs:
 
     - name: 3.17-mysqlclient-openssl - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.17-mysqlclient-openssl
         platforms: 
@@ -358,7 +358,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Display system info (linux)
       run: |
@@ -382,7 +382,7 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Cache Docker layers
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /tmp/.buildx-cache
         key: ${{ runner.os }}-buildx-3.15-${{ github.sha }}
@@ -426,7 +426,7 @@ jobs:
     - name: 3.15 - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15
         platforms: 
@@ -440,7 +440,7 @@ jobs:
     - name: 3.15 - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15
         platforms: 
@@ -453,7 +453,7 @@ jobs:
 
     - name: 3.15 - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15
         platforms: 
@@ -494,7 +494,7 @@ jobs:
     - name: 3.15-mysqlclient - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15-mysqlclient
         platforms: 
@@ -508,7 +508,7 @@ jobs:
     - name: 3.15-mysqlclient - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15-mysqlclient
         platforms: 
@@ -521,7 +521,7 @@ jobs:
 
     - name: 3.15-mysqlclient - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15-mysqlclient
         platforms: 
@@ -561,7 +561,7 @@ jobs:
     - name: 3.15-openssl - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15-openssl
         platforms: 
@@ -575,7 +575,7 @@ jobs:
     - name: 3.15-openssl - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15-openssl
         platforms: 
@@ -588,7 +588,7 @@ jobs:
 
     - name: 3.15-openssl - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15-openssl
         platforms: 
@@ -628,7 +628,7 @@ jobs:
     - name: 3.15-mysqlclient-openssl - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15-mysqlclient-openssl
         platforms: 
@@ -642,7 +642,7 @@ jobs:
     - name: 3.15-mysqlclient-openssl - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15-mysqlclient-openssl
         platforms: 
@@ -655,7 +655,7 @@ jobs:
 
     - name: 3.15-mysqlclient-openssl - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.15-mysqlclient-openssl
         platforms: 
@@ -679,7 +679,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Display system info (linux)
       run: |
@@ -703,7 +703,7 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Cache Docker layers
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /tmp/.buildx-cache
         key: ${{ runner.os }}-buildx-3.12-${{ github.sha }}
@@ -747,7 +747,7 @@ jobs:
     - name: 3.12 - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12
         platforms: 
@@ -761,7 +761,7 @@ jobs:
     - name: 3.12 - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12
         platforms: 
@@ -774,7 +774,7 @@ jobs:
 
     - name: 3.12 - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12
         platforms: 
@@ -815,7 +815,7 @@ jobs:
     - name: 3.12-mysqlclient - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12-mysqlclient
         platforms: 
@@ -829,7 +829,7 @@ jobs:
     - name: 3.12-mysqlclient - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12-mysqlclient
         platforms: 
@@ -842,7 +842,7 @@ jobs:
 
     - name: 3.12-mysqlclient - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12-mysqlclient
         platforms: 
@@ -882,7 +882,7 @@ jobs:
     - name: 3.12-openssl - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12-openssl
         platforms: 
@@ -896,7 +896,7 @@ jobs:
     - name: 3.12-openssl - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12-openssl
         platforms: 
@@ -909,7 +909,7 @@ jobs:
 
     - name: 3.12-openssl - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12-openssl
         platforms: 
@@ -949,7 +949,7 @@ jobs:
     - name: 3.12-mysqlclient-openssl - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12-mysqlclient-openssl
         platforms: 
@@ -963,7 +963,7 @@ jobs:
     - name: 3.12-mysqlclient-openssl - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12-mysqlclient-openssl
         platforms: 
@@ -976,7 +976,7 @@ jobs:
 
     - name: 3.12-mysqlclient-openssl - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/3.12-mysqlclient-openssl
         platforms: 
