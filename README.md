@@ -12,6 +12,10 @@ Packages included for all images: `curl`, `wget`
 
 | Tag | Dockerfile Build Context |
 |:-------:|:---------:|
+| `:3.20`, `:latest` | [View](variants/3.20) |
+| `:3.20-mysqlclient` | [View](variants/3.20-mysqlclient) |
+| `:3.20-openssl` | [View](variants/3.20-openssl) |
+| `:3.20-mysqlclient-openssl` | [View](variants/3.20-mysqlclient-openssl) |
 | `:3.17`, `:latest` | [View](variants/3.17) |
 | `:3.17-mysqlclient` | [View](variants/3.17-mysqlclient) |
 | `:3.17-openssl` | [View](variants/3.17-openssl) |
@@ -32,7 +36,7 @@ Example 1: Create one cron that runs as `root`
 ```sh
 docker run -it \
     -e CRON='* * * * * /bin/echo "hello"' \
-    theohbrothers/docker-alpine-cron:3.17
+    theohbrothers/docker-alpine-cron:3.20
 ```
 
 Example 2: Create two crons that run as `root`
@@ -40,7 +44,7 @@ Example 2: Create two crons that run as `root`
 ```sh
 docker run -it \
     -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"' \
-    theohbrothers/docker-alpine-cron:3.17
+    theohbrothers/docker-alpine-cron:3.20
 ```
 
 Example 3: Create two crons that run as UID `3000` and GID `4000`
@@ -50,7 +54,7 @@ docker run -it \
     -e CRON='* * * * * /bin/echo "hello"\n* * * * * /bin/echo "world"' \
     -e CRON_UID=3000 \
     -e CRON_GID=4000 \
-    theohbrothers/docker-alpine-cron:3.17
+    theohbrothers/docker-alpine-cron:3.20
 ```
 
 ### Environment variables

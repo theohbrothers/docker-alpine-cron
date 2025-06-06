@@ -1,4 +1,5 @@
 $local:VARIANTS_DISTRO_VERSIONS = @(
+    '3.20'
     '3.17'
     '3.15'
     '3.12'
