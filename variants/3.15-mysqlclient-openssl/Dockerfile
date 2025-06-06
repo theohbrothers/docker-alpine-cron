@@ -1,6 +1,6 @@
 FROM alpine:3.15
 
-RUN apk add --no-cache curl wget
+RUN apk add --no-cache ca-certificates curl wget
 
 RUN apk add --no-cache mysql-client
 
